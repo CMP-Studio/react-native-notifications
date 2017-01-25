@@ -179,8 +179,7 @@ export default class NotificationsIOS {
    * - `userInfo`  : An optional object containing additional notification data.
    * - `fireDate` : The date and time when the system should deliver the notification. if not specified, the notification will be dispatched immediately.
    */
-  static localNotification(notification: Object) {
-    let notificationId = uuid.v4();
+  static localNotification(notification: Object, notificationId = uuid.v4()) {
     NativeRNNotifications.localNotification(notification, notificationId);
 
     return notificationId;
