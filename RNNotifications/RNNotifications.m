@@ -468,23 +468,6 @@ RCT_EXPORT_METHOD(consumeBackgroundQueue)
                                                             object:self
                                                           userInfo:action];
     }];
-
-    // Push background notifications to JS
-    [[RNNotificationsBridgeQueue sharedInstance] consumeNotificationsQueue:^(NSDictionary* notification) {
-        [RNNotifications didReceiveRemoteNotification:notification];
-    }];
-
-    // Push opened local notifications
-    NSDictionary* openedLocalNotification = [RNNotificationsBridgeQueue sharedInstance].openedLocalNotification;
-    if (openedLocalNotification) {
-        [RNNotifications didNotificationOpen:openedLocalNotification];
-    }
-
-    // Push opened remote notifications
-    NSDictionary* openedRemoteNotification = [RNNotificationsBridgeQueue sharedInstance].openedRemoteNotification;
-    if (openedRemoteNotification) {
-        [RNNotifications didNotificationOpen:openedRemoteNotification];
-    }
 }
 
 RCT_EXPORT_METHOD(localNotification:(NSDictionary *)notification withId:(NSString *)notificationId)
